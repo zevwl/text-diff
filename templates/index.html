@@ -2,12 +2,47 @@
 
 {% block body %}
 
-    <div class="col">
-        <form action="/compare" enctype="multipart/form-data" method="post">
+    <form action="/compare" enctype="multipart/form-data" method="post">
 
-            <!-- TODO -->
+        <div class="form-group">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="file1" name="file1">
+                <label for="file1" class="custom-file-label">File 1</label>
+            </div>
+        </div>
 
-        </form>
-    </div>
+        <div class="form-group">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="file2" name="file2">
+                <label for="file2" class="custom-file-label">File 2</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <select class="custom-select" name="algorithm">
+                <option>Compare ...</option>
+                <option value="lines">Lines</option>
+                <option value="sentences">Sentences</option>
+                <option value="substrings">Substring</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" type="number" name="length" placeholder="of length n" hidden>
+        </div>
+
+        <button class="btn btn-block btn-primary">Submit</button>
+
+    </form>
+
+    <script>
+        const select = document.querySelector('select')
+        const length = document.querySelector('input[name=length]')
+
+        // Only show input for `n` if `substrings` algorithm is selected
+        select.addEventListener('change', event => {
+            length.hidden = select.selectedOptions[0].value !== 'substrings'
+        })
+    </script>
 
 {% endblock %}
