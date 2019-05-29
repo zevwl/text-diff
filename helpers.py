@@ -25,5 +25,14 @@ def sentences(a, b):
 def substrings(a, b, n):
     """Return substrings of length n in both a and b"""
 
-    # TODO
-    return []
+    subs_a = get_substrings(a, n)
+    subs_b = get_substrings(b, n)
+
+    matches = [s for s in subs_a if s in subs_b]
+    return matches
+
+
+def get_substrings(s, n):
+    """Return a set of all substrings of length n"""
+
+    return {s[i:i + n] for i in range(len(s) - n + 1)}
