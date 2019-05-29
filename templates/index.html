@@ -41,6 +41,20 @@
 
         // Only show input for `n` if `substrings` algorithm is selected
         select.addEventListener('change', event => length.hidden = select.selectedOptions[0].value !== 'substrings')
+
+        // Show filename after file input change
+        const addFileNameToLabel = file => file.target.nextElementSibling.textContent = file.target.files[0].name
+        document.querySelectorAll('.custom-file-input').forEach(file => file.addEventListener('change', addFileNameToLabel))
     </script>
+
+    <style type="text/css">
+        /* Fix for overflowing file name in label */
+        .custom-file-label {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding-right: 80px;
+        }
+    </style>
 
 {% endblock %}
