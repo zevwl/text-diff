@@ -40,9 +40,7 @@
         const length = document.querySelector('input[name=length]')
 
         // Only show input for `n` if `substrings` algorithm is selected
-        select.addEventListener('change', event => {
-            length.hidden = select.selectedOptions[0].value !== 'substrings'
-        })
+        select.addEventListener('change', event => length.hidden = select.selectedOptions[0].value !== 'substrings')
     </script>
 
 {% endblock %}
